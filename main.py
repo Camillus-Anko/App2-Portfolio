@@ -25,19 +25,31 @@ Feel Free to contact me!
 # st.info(content2)
 st.write(content2)
 
-col3, col4 = st.columns(2)
+# col3, col4 = st.columns(2)
+col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5]) #Adding space with empty_col
+#ratio dimensions of the 3 columns, 1st column will be 3x wider tham the middle collumn
+
 
 df = pandas.read_csv("data.csv", sep=";")
 
 with col3:
     for index, row in df[:10].iterrows():
         st.header(row["title"])
+        st.write(row["description"])
+        st.image("images/" + row["image"])
+        # st.write("[Source Code] (https://pythonhow.com)") OR
+        st.write(f"[Source Code]({row['url']})") #Takes the name of the link "Sorce Code" and the url as argument
 
 
 with col4:
     for index, row in df[10:].iterrows():
         st.header(row["title"])
+        st.write(row["description"])
+        st.image("images/" + row["image"])
+        st.write(f"[Source Code]({row['url']})")
 
-        
+
+
+
 
 
